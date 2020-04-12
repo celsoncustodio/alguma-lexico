@@ -17,12 +17,14 @@ import org.antlr.v4.runtime.Token;
 public class Principal {
      public static void main(String[] args) {
         try {
-            // args[0] é o primeiro argumento da linha de comando
             CharStream cs = CharStreams.fromFileName(args[0]);
             AlgumaLexer lex = new AlgumaLexer(cs);
-            while (lex.nextToken().getType() != Token.EOF) {
-                System.out.println("");
+
+            Token t = null;
+            while ((t = lex.nextToken()).getType() != Token.EOF) {
+                 System.out.print("<" + AlgumaLexer.VOCABULARY.getDisplayName(t.getType()) + "," + t.getText() + ">");
             }
+
         } catch (IOException ex) {
         }
     }
